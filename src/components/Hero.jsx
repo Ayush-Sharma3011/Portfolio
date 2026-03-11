@@ -2,43 +2,43 @@ import React from 'react';
 import { ArrowRight, Download } from 'lucide-react';
 
 const Hero = () => {
-    return (
-        <section id="home" className="hero">
-            <div className="container hero-container">
-                <div className="hero-content">
-                    <p className="greeting">Hi there, I'm</p>
-                    <h1 className="name">Ayush Sharma</h1>
-                    <h2 className="title">
-                        Passionate <span className="gradient-text">Full Stack Developer</span>
-                    </h2>
-                    <p className="description">
-                        I specialize in crafting high-quality, responsive web experiences.
-                        Currently diving deep into Backend Web Development to build robust, scalable applications from end to end.
-                    </p>
+  return (
+    <section id="home" className="hero">
+      <div className="container hero-container">
+        <div className="hero-content">
+          <p className="greeting">Hi there, I'm</p>
+          <h1 className="name">Ayush Sharma</h1>
+          <h2 className="title">
+            Passionate <span className="gradient-text">Full Stack Developer</span>
+          </h2>
+          <p className="description">
+            I specialize in crafting high-quality, responsive web experiences.
+            Currently diving deep into Backend Web Development to build robust, scalable applications from end to end.
+          </p>
 
-                    <div className="cta-group">
-                        <a href="#projects" className="btn btn-primary">
-                            View My Work <ArrowRight size={18} />
-                        </a>
-                        <a href="mailto:sharmaayush300424@gmail.com" className="btn btn-outline">
-                            Let's Talk <Download size={18} />
-                        </a>
-                    </div>
-                </div>
+          <div className="cta-group">
+            <a href="#projects" className="btn btn-primary">
+              View My Work <ArrowRight size={18} />
+            </a>
+            <a href="mailto:sharmaayush300424@gmail.com" className="btn btn-outline">
+              Let's Talk <Download size={18} />
+            </a>
+          </div>
+        </div>
 
-                <div className="hero-image-container">
-                    <div className="glow-orb"></div>
-                    <div className="image-wrapper glass-card">
-                        <img
-                            src="https://avatars.githubusercontent.com/u/74038190?v=4"
-                            alt="Ayush Sharma"
-                            className="profile-img"
-                        />
-                    </div>
-                </div>
-            </div>
+        <div className="hero-image-container">
+          <div className="glow-orb"></div>
+          <div className="image-wrapper glass-card">
+            <img
+              src="/Passport Size Photo.jpeg"
+              alt="Ayush Sharma"
+              className="profile-img"
+            />
+          </div>
+        </div>
+      </div>
 
-            <style>{`
+      <style>{`
         .hero {
           min-height: 100vh;
           padding-top: 100px;
@@ -151,8 +151,8 @@ const Hero = () => {
           }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default Hero;

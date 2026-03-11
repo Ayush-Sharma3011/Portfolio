@@ -1,83 +1,94 @@
 import React from 'react';
-import { Code, Server, User, Zap } from 'lucide-react';
+import { Code, Server, User, Zap, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const About = () => {
-    const skills = [
-        { name: 'HTML5/CSS3', level: 90 },
-        { name: 'JavaScript', level: 85 },
-        { name: 'React.js', level: 80 },
-        { name: 'Node.js', level: 70 },
-        { name: 'C++', level: 75 },
-        { name: 'PHP', level: 65 }
-    ];
+  const skills = [
+    { name: 'HTML5/CSS3', level: 90 },
+    { name: 'JavaScript', level: 85 },
+    { name: 'React.js', level: 80 },
+    { name: 'Node.js', level: 70 },
+    { name: 'C++', level: 75 },
+    { name: 'PHP', level: 65 }
+  ];
 
-    const cards = [
-        {
-            icon: <Code size={32} />,
-            title: 'Frontend Development',
-            desc: 'Building responsive, accessible web applications with modern UI frameworks.'
-        },
-        {
-            icon: <Server size={32} />,
-            title: 'Backend Engineering',
-            desc: 'Currently learning backend development to create solid APIs and data structures.'
-        },
-        {
-            icon: <Zap size={32} />,
-            title: 'Open Source',
-            desc: 'Enthusiastic about contributing to the open-source community.'
-        }
-    ];
+  const cards = [
+    {
+      icon: <Code size={32} />,
+      title: 'Frontend Development',
+      desc: 'Building responsive, accessible web applications with modern UI frameworks.'
+    },
+    {
+      icon: <Server size={32} />,
+      title: 'Backend Engineering',
+      desc: 'Currently learning backend development to create solid APIs and data structures.'
+    },
+    {
+      icon: <Zap size={32} />,
+      title: 'Open Source',
+      desc: 'Enthusiastic about contributing to the open-source community.'
+    }
+  ];
 
-    return (
-        <section id="about" className="about">
-            <div className="container">
-                <h2 className="section-title">About Me</h2>
+  return (
+    <section id="about" className="about">
+      <div className="container">
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
+          <h2 className="section-title" style={{ marginBottom: 0 }}>About Me</h2>
+          <Link to="/about" className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem' }}>
+            Read More <ArrowRight size={16} />
+          </Link>
+        </div>
 
-                <div className="about-grid">
-                    <div className="about-text glass-card">
-                        <div className="about-header">
-                            <User className="gradient-text" size={28} />
-                            <h3>Who am I?</h3>
-                        </div>
-                        <p>
-                            Life is Easy! I am Ayush Sharma, a dedicated Full Stack Developer with a sharp eye for user interfaces and an eagerness to tackle complex logic on the back end.
-                        </p>
-                        <p>
-                            I am open to collaborating with tech leads and peers on innovative projects. My goal is to build seamless web applications while continuously expanding my technical horizons.
-                        </p>
-
-                        <div className="skills-container">
-                            <h4 className="skills-title">Core Skills</h4>
-                            <div className="skills-list">
-                                {skills.map((skill) => (
-                                    <div key={skill.name} className="skill-item">
-                                        <div className="skill-info">
-                                            <span>{skill.name}</span>
-                                            <span>{skill.level}%</span>
-                                        </div>
-                                        <div className="progress-bar">
-                                            <div className="progress" style={{ width: `${skill.level}%` }}></div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="feature-cards">
-                        {cards.map((card, idx) => (
-                            <div key={idx} className="glass-card feature-card">
-                                <div className="feature-icon">{card.icon}</div>
-                                <h4 className="feature-title">{card.title}</h4>
-                                <p className="feature-desc">{card.desc}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+        <div className="about-grid">
+          <div className="about-text glass-card">
+            <div className="about-header">
+              <User className="gradient-text" size={28} />
+              <h3>Who am I?</h3>
             </div>
+            <p>
+              Life is Easy! I am Ayush Sharma, a dedicated Full Stack Developer with a sharp eye for user interfaces and an eagerness to tackle complex logic on the back end.
+            </p>
+            <p>
+              I am open to collaborating with tech leads and peers on innovative projects. My goal is to build seamless web applications while continuously expanding my technical horizons.
+            </p>
 
-            <style>{`
+            <div className="skills-container">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                <h4 className="skills-title" style={{ marginBottom: 0 }}>Core Skills</h4>
+                <Link to="/skills" className="text-link" style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', color: 'var(--accent-color)', fontSize: '0.9rem', fontWeight: 500, textDecoration: 'none' }}>
+                  View Detailed Skills <ArrowRight size={14} />
+                </Link>
+              </div>
+              <div className="skills-list">
+                {skills.map((skill) => (
+                  <div key={skill.name} className="skill-item">
+                    <div className="skill-info">
+                      <span>{skill.name}</span>
+                      <span>{skill.level}%</span>
+                    </div>
+                    <div className="progress-bar">
+                      <div className="progress" style={{ width: `${skill.level}%` }}></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="feature-cards">
+            {cards.map((card, idx) => (
+              <div key={idx} className="glass-card feature-card">
+                <div className="feature-icon">{card.icon}</div>
+                <h4 className="feature-title">{card.title}</h4>
+                <p className="feature-desc">{card.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <style>{`
         .about-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -184,8 +195,8 @@ const About = () => {
           }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default About;

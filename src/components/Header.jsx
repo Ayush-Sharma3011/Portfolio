@@ -1,77 +1,98 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X, Github, Linkedin, FileText } from 'lucide-react';
 
 const Header = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    const navLinks = [
-        { name: 'Home', href: '#home' },
-        { name: 'About', href: '#about' },
-        { name: 'Projects', href: '#projects' },
-        { name: 'Contact', href: '#contact' }
-    ];
+  const navLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Skills', href: '/skills' },
+    { name: 'Projects', href: '/#projects' },
+    { name: 'Contact', href: '/#contact' }
+  ];
 
-    return (
-        <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
-            <div className="container header-container">
-                <a href="#home" className="logo">
-                    <span className="gradient-text">Ayush</span> Sharma
-                </a>
+  return (
+    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
+      <div className="container header-container">
+        <Link to="/" className="logo">
+          <span className="gradient-text">Ayush</span> Sharma
+        </Link>
 
-                {/* Desktop Nav */}
-                <nav className="desktop-nav">
-                    <ul className="nav-links">
-                        {navLinks.map((link) => (
-                            <li key={link.name}>
-                                <a href={link.href}>{link.name}</a>
-                            </li>
-                        ))}
-                    </ul>
-                    <div className="nav-socials">
-                        <a href="https://github.com/Ayush-Sharma3011" target="_blank" rel="noreferrer" className="social-icon">
-                            <Github size={20} />
-                        </a>
-                        <a href="https://www.linkedin.com/in/ayush-sharma3011/" target="_blank" rel="noreferrer" className="social-icon">
-                            <Linkedin size={20} />
-                        </a>
-                    </div>
-                </nav>
+        {/* Desktop Nav */}
+        <nav className="desktop-nav">
+          <ul className="nav-links">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                {link.href.startsWith('/#') ? (
+                  <a href={location.pathname === '/' ? link.href.substring(1) : link.href}>{link.name}</a>
+                ) : (
+                  <Link to={link.href}>{link.name}</Link>
+                )}
+              </li>
+            ))}
+          </ul>
+          <div className="nav-buttons">
+            <a href="/Ayush_CV_compressed.pdf" target="_blank" rel="noreferrer" className="btn btn-primary resume-btn" style={{ padding: '0.4rem 1rem', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '0.5rem', borderRadius: '4px' }}>
+              <FileText size={16} /> Resume
+            </a>
+          </div>
+          <div className="nav-socials">
+            <a href="https://github.com/Ayush-Sharma3011" target="_blank" rel="noreferrer" className="social-icon">
+              <Github size={20} />
+            </a>
+            <a href="https://www.linkedin.com/in/ayush-sharma3011/" target="_blank" rel="noreferrer" className="social-icon">
+              <Linkedin size={20} />
+            </a>
+          </div>
+        </nav>
 
-                {/* Mobile Toggle */}
-                <button className="mobile-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                    {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-                </button>
+        {/* Mobile Toggle */}
+        <button className="mobile-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
 
-                {/* Mobile Nav */}
-                <div className={`mobile-nav ${mobileMenuOpen ? 'open' : ''}`}>
-                    <ul className="mobile-nav-links">
-                        {navLinks.map((link) => (
-                            <li key={link.name}>
-                                <a href={link.href} onClick={() => setMobileMenuOpen(false)}>{link.name}</a>
-                            </li>
-                        ))}
-                    </ul>
-                    <div className="mobile-socials">
-                        <a href="https://github.com/Ayush-Sharma3011" target="_blank" rel="noreferrer" className="social-icon">
-                            <Github size={24} />
-                        </a>
-                        <a href="https://www.linkedin.com/in/ayush-sharma3011/" target="_blank" rel="noreferrer" className="social-icon">
-                            <Linkedin size={24} />
-                        </a>
-                    </div>
-                </div>
-            </div>
+        {/* Mobile Nav */}
+        <div className={`mobile-nav ${mobileMenuOpen ? 'open' : ''}`}>
+          <ul className="mobile-nav-links">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                {link.href.startsWith('/#') ? (
+                  <a href={location.pathname === '/' ? link.href.substring(1) : link.href} onClick={() => setMobileMenuOpen(false)}>{link.name}</a>
+                ) : (
+                  <Link to={link.href} onClick={() => setMobileMenuOpen(false)}>{link.name}</Link>
+                )}
+              </li>
+            ))}
+            <li>
+              <a href="/Ayush_CV_compressed.pdf" target="_blank" rel="noreferrer" className="btn btn-primary resume-btn" style={{ padding: '0.4rem 1rem', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '0.5rem', borderRadius: '4px' }} onClick={() => setMobileMenuOpen(false)}>
+                <FileText size={16} /> Resume
+              </a>
+            </li>
+          </ul>
+          <div className="mobile-socials">
+            <a href="https://github.com/Ayush-Sharma3011" target="_blank" rel="noreferrer" className="social-icon">
+              <Github size={24} />
+            </a>
+            <a href="https://www.linkedin.com/in/ayush-sharma3011/" target="_blank" rel="noreferrer" className="social-icon">
+              <Linkedin size={24} />
+            </a>
+          </div>
+        </div>
+      </div>
 
-            <style>{`
+      <style>{`
         .header {
           position: fixed;
           top: 0;
@@ -101,6 +122,7 @@ const Header = () => {
           font-size: 1.5rem;
           font-weight: 700;
           letter-spacing: -0.5px;
+          text-decoration: none;
         }
 
         .desktop-nav {
@@ -112,6 +134,7 @@ const Header = () => {
         .nav-links {
           display: flex;
           gap: 2rem;
+          list-style: none;
         }
 
         .nav-links a {
@@ -119,6 +142,7 @@ const Header = () => {
           font-size: 0.95rem;
           color: var(--text-color);
           position: relative;
+          text-decoration: none;
         }
 
         .nav-links a::after {
@@ -134,6 +158,10 @@ const Header = () => {
 
         .nav-links a:hover::after {
           width: 100%;
+        }
+
+        .nav-buttons {
+          display: flex;
         }
 
         .nav-socials, .mobile-socials {
@@ -185,11 +213,14 @@ const Header = () => {
           flex-direction: column;
           align-items: center;
           gap: 1.5rem;
+          list-style: none;
         }
 
         .mobile-nav-links a {
           font-size: 1.25rem;
           font-weight: 600;
+          text-decoration: none;
+          color: var(--text-color);
         }
 
         @media (max-width: 768px) {
@@ -206,8 +237,8 @@ const Header = () => {
           }
         }
       `}</style>
-        </header>
-    );
+    </header>
+  );
 };
 
 export default Header;
