@@ -18,7 +18,7 @@ const Hero = () => {
 
           <div className="cta-group">
             <a href="#projects" className="btn btn-primary">
-              View My Work <ArrowRight size={18} />
+              View My       Work <ArrowRight size={18} />
             </a>
             <a href="mailto:sharmaayush300424@gmail.com" className="btn btn-outline">
               Let's Talk <Download size={18} />
